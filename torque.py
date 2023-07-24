@@ -36,7 +36,7 @@ def rrea(mat):
         pj += 1
 
         if pi >= rows or pj >= columns:
-            return mat
+            return mat #returned mat
 
 
 
@@ -62,7 +62,7 @@ def rrea(mat):
     #             mat[swapped] = [i / mat[swapped][swapped] for i in mat[swapped]]
     #
     #             break
-    #
+    #   
     #     for i, v in enumerate(mat):
     #         if i+1 < len(mat):
     #             if mat[i+1][swapped] == 0:
