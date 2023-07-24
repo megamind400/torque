@@ -1,12 +1,14 @@
-def rrea(mat):
+#import decimal
+
+def echelon(mat):
     # mat = [[0, 3, 0, -1], [5, 2, -8, 8], [-4, 5, 9, -9]]
-    mat = [[0, 2, -8, 8], [-4, 5, 9, -9], [1, -2, 1, 0]]
+    
 
     pi = 0
     pj = 0
     columns = len(mat[pi])
     rows = len(mat)
-
+    #mat = [[decimal.Decimal(x) for x in row] for row in mat]
     while True:
         flag = False
         for i in range(len(mat)):
@@ -30,7 +32,7 @@ def rrea(mat):
                     continue
                 else:
                     multiplier = mat[pi + x][pj]
-                    mat[pi + x] = [mat[pi][i] * multiplier - mat[pi + x][i] for i in range(columns)]
+                    mat[pi + x] = [ mat[pi + x][i] - (mat[pi][i] * multiplier)  for i in range(columns)]
 
         pi += 1
         pj += 1
@@ -38,42 +40,27 @@ def rrea(mat):
         if pi >= rows or pj >= columns:
             return mat #returned mat
 
-
-
-
-    # for x in range(pj, columns):
-    #     if mat[pi][x] == 0:
-    #         continue
-    #     else:
-    #         break
-
-    # n = 0
-    # for swapped in range(len(mat)):
-    #     flag = False
-    #     for i, x in enumerate(mat):
-    #
-    #         if (mat[i][n] == 0):
-    #             flag = True
-    #             continue
-    #         elif flag is True:
-    #
-    #             # swap row i with row 1
-    #             mat[i], mat[swapped] = mat[swapped], mat[i]
-    #             mat[swapped] = [i / mat[swapped][swapped] for i in mat[swapped]]
-    #
-    #             break
-    #   
-    #     for i, v in enumerate(mat):
-    #         if i+1 < len(mat):
-    #             if mat[i+1][swapped] == 0:
-    #                 continue
-    #             else:
-    #                 multiper = mat[i+1][swapped]
-    #                 # turn non zero values under the pivot ito zeros:
-    #                 mat[i+1] = [((x*multiper) - mat[i+1][ind]) for ind, x in enumerate(mat[0])]
-    #     n += 1
-    #
     return mat
 
 
-print(rrea(0))
+decimal.setcontext(decimal.Context(prec=3))
+mat = [[-3, 2, 3, -11], [1, 2, -1, 9], [2, -4, -4, 8]]
+temp = echelon(mat)
+
+
+def rref(mat):
+    '''
+    parameter:
+        mat: must be echelon form
+
+    return:
+        mat: reduced row echelon form of the matrix
+    '''
+    [1,2,3,4]
+    [0,1,4,6]
+    []
+
+
+print(f"{temp[0]}\n{temp[1]}\n{temp[2]}")
+
+
