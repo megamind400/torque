@@ -48,7 +48,7 @@ def echelon(mat):
 
 
 # decimal.setcontext(decimal.Context(prec=3))
-mat = [[-4, -2, 2, 0], [-2, 3, -3, -8], [1, -4, 4, 9]]
+mat = [[1, -1, -2, 2], [0, 1, 0, 10], [0, 0, 1, -7]]
 temp = echelon(mat)
 
 def rref(mat):
@@ -73,7 +73,7 @@ def rref(mat):
     
     while pi >= -rows:
         i = 1
-        while i <= rows:
+        while i < rows:
             try:
                 if mat[pi-i][pj] != 0:
                     multiplier = mat[pi-i][pj]
@@ -88,7 +88,7 @@ def rref(mat):
         
         
         
-        return mat 
+    return mat 
             
 
 
