@@ -48,7 +48,7 @@ def echelon(mat):
 
 
 # decimal.setcontext(decimal.Context(prec=3))
-mat = [[1, -1, -2, 2], [0, 1, 0, 10], [0, 0, 1, -7]]
+mat = [[1, -1, 2, 8], [0, 0, 7, 50], [0, 0, 10, 24]]
 temp = echelon(mat)
 
 def rref(mat):
@@ -86,9 +86,21 @@ def rref(mat):
         pj -= 1
 
         
+    check_output(mat)
+    return mat
+
+            
+
+
+def check_output(mat):
+    
+    for row in mat:        
+        temp = 0
         
-        
-    return mat 
+        for c in range(0, len(row) - 1):
+            temp += row[c]
+        if temp == 0 and row[-1] != 0:
+            raise Exception("no solution for the given matrix") 
             
 
 
@@ -99,3 +111,4 @@ def rref(mat):
     
 temp = rref(temp)
 print(f"{temp[0]}\n{temp[1]}\n{temp[2]}")
+print(check_output(temp))
