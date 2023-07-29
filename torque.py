@@ -24,8 +24,10 @@ def echelon(mat):
                 break
 
         # scale the pivot to one:
-        mat[pi] = [Fraction(i, mat[pi][pi]) for i in mat[pi]]
-
+        try:
+            mat[pi] = [Fraction(i, mat[pi][pi]) for i in mat[pi]]
+        except ZeroDivisionError as e:
+            print(e)
         # turn everything under pivot to 0
         for x in range(1, rows):
             if pi + x < rows:
@@ -46,20 +48,54 @@ def echelon(mat):
 
 
 # decimal.setcontext(decimal.Context(prec=3))
-mat = [[-3, 2, 3, -11], [1, 2, -1, 9], [2, -4, -4, 8]]
+mat = [[-4, -2, 2, 0], [-2, 3, -3, -8], [1, -4, 4, 9]]
 temp = echelon(mat)
 
-# def rref(mat):
-#     '''
-#     parameter:
-#         mat: must be echelon form
-#
-#     return:
-#         mat: reduced row echelon form of the matrix
-#     '''
-#     [1, 2, 3, 4]
-#     [0, 1, 4, 6]
-#     []
-#
+def rref(mat):
 
+    rows = len(mat)
+    cols = len(mat[0])
+
+    check = False
+    for i in mat[-1]:
+        if i != 0:
+            check = True
+            break
+        
+
+    if check:
+        pi = -1
+        pj = -2
+        
+    else:
+        pi = -2
+        pj = -2
+    
+    while pi >= -rows:
+        i = 1
+        while i <= rows:
+            try:
+                if mat[pi-i][pj] != 0:
+                    multiplier = mat[pi-i][pj]
+                    mat[pi-i][-1] = mat[pi-i][-1] - (multiplier * mat[pi][-1])
+                    mat[pi-i][pj] = 0
+                i += 1
+            except IndexError as e:
+                break
+        pi -= 1
+        pj -= 1
+
+        
+        
+        
+        return mat 
+            
+
+
+
+
+    
+    
+    
+temp = rref(temp)
 print(f"{temp[0]}\n{temp[1]}\n{temp[2]}")
